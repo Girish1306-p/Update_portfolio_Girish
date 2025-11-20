@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark Theme Base */
+html, body, #root {
+  height: 100%;
+  background-color: #0a0a0a; /* dark but not pure black */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+/* gradient text helper (Tailwind can't animate bg-clip-text itself) */
+.gradient-text {
+  background-image: linear-gradient(90deg, #ffffff, #7dd3fc 40%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* animated underline using pseudo-element */
+.underline-anim {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px; /* space for underline */
+}
+
+.underline-anim::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #7dd3fc, #60a5fa);
+  transition: transform 350ms cubic-bezier(.2,.9,.3,1);
+  border-radius: 999px;
+  will-change: transform;
+}
+
+/* hover expand */
+.underline-anim:hover::after,
+.underline-anim:focus::after {
+  transform: scaleX(1);
+}
+
+/* programmatic toggle: add .is-active to expand and .collapse to collapse */
+.underline-anim.is-active::after { transform: scaleX(1); }
+.underline-anim.collapse::after { transform: scaleX(0); }
+
+/* alternate: collapse from right (nice effect on close) */
+.underline-anim.collapse::after { transform-origin: right center; transform: scaleX(0); }
+
+
+/* HERO SECTION */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+@keyframes float-smooth {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float-smooth {
+  animation: float-smooth 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.1); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
