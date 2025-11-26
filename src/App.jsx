@@ -154,7 +154,7 @@ export default function App() {
             {/* CV Button */}
             <a
               href="./Girish_panda.pdf"
-              download
+              download="Girish_Panda_CV.pdf"
               className="mt-4 inline-block btn-gradient
                  hover:shadow-[0_0_18px_rgba(0,200,255,0.5)]
                  hover:scale-105 transition-all w-max fit-content text-center"
