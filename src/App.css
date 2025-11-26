@@ -68,6 +68,52 @@ section {
   }
 }
 
+@keyframes neonGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: neonGradient 3s ease infinite;
+}
+
+/* btn gradient */
+.btn-gradient {
+  background: linear-gradient(45deg,
+      #00f2ff,
+      #0080ff,
+      #0004ff,
+      #00a2ff,
+      #3700ff);
+  background-size: 300% 300%;
+  animation: gradientShift 4s infinite;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 0 5px rgba(255, 115, 0, 0.8);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 5px 20px;
+  text-decoration: none;
+  position: relative;
+  top: 0%;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-gradient:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 2px rgba(0, 217, 255, 0.9);
+}
+
+
 .animate-blob {
   animation: blob 8s infinite ease-in-out;
 }

@@ -114,7 +114,7 @@ export default function Contact() {
               href={s.link}
               target="_blank"
               rel="noreferrer"
-              className="bg-white/8 backdrop-blur-xl border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:shadow-[0_0_18px_rgba(0,255,255,0.12)] transition"
+              className="bg-white/8 backdrop-blur-xl border border-white/20 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:shadow-[0_0_18px_rgba(0,255,255,0.12)] transition"
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "mirror", delay: i * 0.35, ease: "easeInOut" }}
             >
@@ -130,7 +130,7 @@ export default function Contact() {
         {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
-          className="bg-white/6 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-6 shadow-lg max-w-2xl mx-auto"
+          className="bg-white/6 backdrop-blur-xl border border-white/40 rounded-2xl p-5 md:p-6 shadow-lg max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -138,89 +138,88 @@ export default function Contact() {
         >
           {/* inline status */}
           {/* inline status */}
-{status.error && <div className="text-red-400 text-sm mb-2">{status.error}</div>}
-{status.success && <div className="text-green-400 text-sm mb-2">{status.success}</div>}
+          {status.error && <div className="text-red-400 text-sm mb-2">{status.error}</div>}
+          {status.success && <div className="text-green-400 text-sm mb-2">{status.success}</div>}
 
-{/*  Input Grid  */}
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {/*  Input Grid  */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 
-  <div>
-    <input
-      type="text"
-      name="name"
-      value={form.name}
-      onChange={handleChange}
-      placeholder="Your Name"
-      className="inputBox w-full py-2.5 text-sm"
-    />
-    {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
-  </div>
+            <div>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="inputBox w-full py-2.5 text-sm"
+              />
+              {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+            </div>
 
-  <div>
-    <input
-      type="email"
-      name="email"
-      value={form.email}
-      onChange={handleChange}
-      placeholder="Your Email"
-      className="inputBox w-full py-2.5 text-sm"
-    />
-    {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
-  </div>
+            <div>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                className="inputBox w-full py-2.5 text-sm"
+              />
+              {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+            </div>
 
-</div>
+          </div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 
-  <div>
-    <input
-      type="text"
-      name="phone"
-      value={form.phone}
-      onChange={handleChange}
-      placeholder="Phone Number"
-      className="inputBox w-full py-2.5 text-sm"
-    />
-    {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
-  </div>
+            <div>
+              <input
+                type="text"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                className="inputBox w-full py-2.5 text-sm"
+              />
+              {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
+            </div>
 
-  <div>
-    <input
-      type="text"
-      name="subject"
-      value={form.subject}
-      onChange={handleChange}
-      placeholder="Subject"
-      className="inputBox w-full py-2.5 text-sm"
-    />
-    {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject}</p>}
-  </div>
+            <div>
+              <input
+                type="text"
+                name="subject"
+                value={form.subject}
+                onChange={handleChange}
+                placeholder="Subject"
+                className="inputBox w-full py-2.5 text-sm"
+              />
+              {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject}</p>}
+            </div>
 
-</div>
+          </div>
 
-<div className="mb-4">
-  <textarea
-    name="message"
-    value={form.message}
-    onChange={handleChange}
-    placeholder="Message"
-    rows="5"
-    className="inputBox w-full py-2.5 text-sm min-h-[120px]"
-  />
-  {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
-</div>
+          <div className="mb-4">
+            <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
+              placeholder="Message"
+              rows="5"
+              className="inputBox w-full py-2.5 text-sm min-h-[120px]"
+            />
+            {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
+          </div>
 
-{/* Submit Button */}
-<div className="flex justify-center">
-  <button
-    type="submit"
-    className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-pink-400
-               text-black font-semibold px-6 py-2.5 rounded-lg shadow-md hover:scale-[1.03] transition"
-    disabled={status.loading}
-  >
-    {status.loading ? "Sending..." : "Send Message"}
-  </button>
-</div>
+          {/* Submit Button */}
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="inline-flex items-center gap-2 btn-gradient hover:scale-[1.03] transition"
+              disabled={status.loading}
+            >
+              {status.loading ? "Sending..." : "Send Message"}
+            </button>
+          </div>
 
         </motion.form>
       </div>
@@ -229,7 +228,7 @@ export default function Contact() {
       <style>{`
         .inputBox {
           background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.06);
+          border: 1px solid white;
           padding: 10px 12px;
           border-radius: 10px;
           color: #fff;

@@ -182,13 +182,13 @@ export default function Projects() {
           ))}
 
           {/* Custom Navigation Buttons */}
-          <div className="swiper-button-prev-custom hidden md:flex absolute top-1/2 left-[10px] w-10 h-10 rounded-full bg-white/10 text-cyan-400 items-center justify-center z-40 hover:bg-cyan-500/20 cursor-pointer">
+        </Swiper>
+          <div className="swiper-button-prev-custom hidden md:flex absolute top-1/2 left-[-55px] w-10 h-10 rounded-full bg-white/10 text-cyan-400 items-center justify-center z-40 hover:bg-cyan-500/20 cursor-pointer">
             &#10094;
           </div>
-          <div className="swiper-button-next-custom hidden md:flex absolute top-1/2 right-[10px] w-10 h-10 rounded-full bg-white/10 text-cyan-400 items-center justify-center z-40 hover:bg-cyan-500/20 cursor-pointer">
+          <div className="swiper-button-next-custom hidden md:flex absolute top-1/2 right-[-20px] w-10 h-10 rounded-full bg-white/10 text-cyan-400 items-center justify-center z-40 hover:bg-cyan-500/20 cursor-pointer">
             &#10095;
           </div>
-        </Swiper>
       </div>
     </section>
   );

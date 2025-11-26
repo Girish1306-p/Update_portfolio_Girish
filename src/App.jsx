@@ -6,6 +6,11 @@ import Projects from "./Projects";
 import Experience from "./Experience";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+// Importing FontAwesome icons
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faLinkedin, faInstagram, faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 export default function App() {
 
@@ -150,14 +155,17 @@ export default function App() {
             <a
               href="../public/Girish_panda.pdf"
               download
-              className="mt-4 inline-block bg-gradient-to-r from-cyan-500 to-blue-600 
-                 px-5 py-2 text-sm font-semibold rounded-full shadow-md
-                 border border-cyan-400/40 hover:border-cyan-300
+              className="mt-4 inline-block btn-gradient
                  hover:shadow-[0_0_18px_rgba(0,200,255,0.5)]
                  hover:scale-105 transition-all w-max fit-content text-center"
             >
-              Download CV
+              Download CV <FontAwesomeIcon
+                icon={faDownload}
+                className="text-white text-md drop-shadow-[0_0_6px_rgba(0,255,255,0.8)]"
+              />
             </a>
+
+
 
           </div>
 
@@ -194,10 +202,10 @@ export default function App() {
 
         {/* PROJECTS SECTION */}
         <Projects />
-        
+
         {/* Experience Section */}
         <Experience />
-        
+
         {/* CONTACT SECTION */}
         <Contact />
 
