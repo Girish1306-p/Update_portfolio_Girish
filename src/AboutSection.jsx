@@ -30,17 +30,11 @@ export default function AboutSection() {
 
               {/* LEFT SIDE — ABOUT TEXT */}
               <div className="space-y-4 border-l-4 border-cyan-400 pl-5">
-                  <p className="text-gray-300 text-[15px] leading-relaxed text-justify">
-                      Hi there
-                      I am MCA graduate from College of IT and Management
-                      Education, Bhubaneswar. I completed my BCA from Institute of
-                      Technical Education and Research (SOA University), Bhubaneswar.
+                  <p className="text-gray-300 text-[15px] leading-relaxed">
+                      I am an MCA graduate from the College of IT and Management Education, Bhubaneswar, and completed my BCA at the Institute of Technical Education and Research, SOA University.
                   </p>
-
-                  <p className="text-gray-300 text-[15px] leading-relaxed text-justify">
-                      I’m from Papadahandi, Nabarangpur.
-                      I love building modern, responsive and visually engaging web
-                      interfaces using React, JavaScript and TailwindCSS.
+                  <p className="text-gray-300 text-[15px] leading-relaxed">
+                      I build responsive web interfaces with React.js and JavaScript, and I am currently strengthening my Java Full Stack skills, including Core Java and SQL/database concepts.
                   </p>
 
                   <p className="text-gray-300 text-[15px] leading-relaxed text-justify">
@@ -50,7 +44,7 @@ export default function AboutSection() {
               </div>
 
               {/* RIGHT SIDE — SKILLS GRID */}
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5 w-full">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 w-full">
 
                   {/* Frontend */}
                   <div className="w-full block break-inside-avoid-column p-4 rounded-xl bg-white/5 border border-white/10 
@@ -112,9 +106,18 @@ export default function AboutSection() {
                       </h4>
 
                       <ul className="space-y-1 text-[14px] text-gray-200">
-                          <li className="flex items-center gap-2">
-                              <FontAwesomeIcon icon={faDatabase} className="text-green-400" /> MongoDB
-                          </li>
+                          <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> MongoDB</li>
+                          <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> MySQL / SQL</li>
+                          <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> SQLite</li>
+                      </ul>
+                  </div>
+
+                  {/* Java learning journey */}
+                  <div className="w-full p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-lg transition hover:border-purple-400/30 hover:shadow-purple-500/20">
+                      <h4 className="font-semibold text-lg mb-3 flex items-center gap-2 text-purple-300"><FontAwesomeIcon icon={faLaptopCode} /> Java Full Stack</h4>
+                      <ul className="space-y-1 text-[14px] text-gray-200">
+                          <li>Core Java — currently learning</li>
+                          <li>SQL and relational database practice</li>
                       </ul>
                   </div>
 
