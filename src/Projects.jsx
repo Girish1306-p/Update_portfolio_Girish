@@ -13,6 +13,15 @@ import "swiper/css/pagination";
 
 const projects = [
   {
+    title: "Memory Game",
+    description:
+      "A browser-based memory game built with HTML, CSS, and JavaScript. Includes game play, level selection, and settings.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    img: "/memory-game/asset/game.svg",
+    live: "/memory-game/index.html",
+    code: "https://github.com/Girish1306-p/Update_portfolio_Girish/tree/main/public/memory-game",
+  },
+  {
     title: "Portfolio Website",
     description:
       "A modern personal portfolio built with React, TailwindCSS, and Framer Motion. Fully responsive with smooth UI animations.",
@@ -25,7 +34,7 @@ const projects = [
     title: "Cafe Management System",
     description:
       "A complete cafe management system built using HTML, CSS, JavaScript, Python, Django, and MySQL.",
-    tech: ["SQLite", "Django", "Python", "HTML", "CSS", "JavaScript"],
+    tech: ["MySQL", "Django", "Python", "HTML", "CSS", "JavaScript"],
     img: "/cafe.png",
     live: "",
     code: "",
