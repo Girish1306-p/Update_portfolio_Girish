@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Levels — Memory Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background:#0b1220; color:#e6eef8; font-family:Inter,system-ui; }
+    .glass { background:rgba(255,255,255,.03); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.06); }
+    .tile { transition:transform .18s ease,box-shadow .18s ease; }
+    .tile:hover { transform:translateY(-4px); box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 12px rgba(6,182,212,.06); }
+    .locked { filter:grayscale(.9) blur(.4px); opacity:.36; cursor:not-allowed; }
+    .small { font-size:.78rem; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-sm glass rounded-2xl p-5 shadow-lg">
+    <h2 class="text-center text-lg font-semibold text-cyan-300 mb-3">Select Sub-Level</h2>
+    <p class="text-center text-xs text-white/60 mb-4">Complete levels to unlock next sub-levels</p>
+    <div id="levelsGrid" class="grid grid-cols-4 gap-3"></div>
+    <div class="mt-5 flex items-center justify-between">
+      <button onclick="goHome()" class="px-3 py-1.5 rounded-full bg-white/5 text-xs">⬅ Home</button>
+      <button id="resetBtn" class="px-3 py-1.5 rounded-full bg-white/6 text-xs">Reset Progress</button>
+    </div>
+  </div>
+  <script>
+    const MAIN_LEVEL=Number(new URLSearchParams(location.search).get('level'))||1;
+    const SUBS=5,TOTAL_MAIN_LEVELS=10;
+    const grid=document.getElementById('levelsGrid'),resetBtn=document.getElementById('resetBtn');
+    function getUnlockedCount(){const v=localStorage.getItem('unlockedCount');return v?Number(v):1}
+    function setUnlockedCount(n){localStorage.setItem('unlockedCount',String(n))}
+    function renderGrid(){
+      grid.innerHTML='';const unlocked=getUnlockedCount();
+      const startMain=Math.max(1,MAIN_LEVEL),endMain=Math.min(TOTAL_MAIN_LEVELS,startMain+4);
+      for(let L=startMain;L<=endMain;L++){for(let s=1;s<=SUBS;s++){
+        const idx=(L-1)*SUBS+s,isLocked=idx>unlocked,tile=document.createElement('div');
+        tile.className=`tile ${isLocked?'locked':''} rounded-xl p-2 text-center small glass cursor-pointer`;
+        tile.innerHTML=`<div class="font-semibold text-sm">${L}-${s}</div><div class="text-[10px] mt-1 ${isLocked?'text-red-400':'text-green-300'}">${isLocked?'Locked':'Play'}</div>`;
+        if(!isLocked)tile.onclick=()=>openLevel(L,s);grid.appendChild(tile);
+      }}
+    }
+    function openLevel(level,sub){location.href=`game.html?level=${level}&sub=${sub}`}
+    function goHome(){location.href='index.html'}
+    resetBtn.onclick=()=>{if(confirm('Reset progress? This will unlock only first sub-level.')){setUnlockedCount(1);renderGrid();alert('Progress reset.')}}
+    renderGrid();
+  </script>
+</body>
+</html>
