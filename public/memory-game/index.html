@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>Memory Game | Girish Panda</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#222b3b;--line:#ffffff20;--cyan:#22d3ee;--purple:#a855f7;--muted:#a8b2c4}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 20% 10%,#142b45 0,transparent 35%),radial-gradient(circle at 80% 90%,#291b48 0,transparent 35%),var(--bg);font-family:Inter,system-ui,sans-serif;color:#f8fafc}
+.panel{width:min(100%,580px);padding:clamp(20px,5vw,38px);border:1px solid var(--line);border-radius:26px;background:#ffffff0e;box-shadow:0 20px 70px #0005;backdrop-filter:blur(16px);text-align:center}
+h1{font-size:clamp(2rem,7vw,2.8rem);margin:0 0 8px;color:white;text-shadow:0 0 15px #22d3ee99}p{color:var(--muted);line-height:1.55}.controls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:18px 0}
+button,select{border:1px solid var(--line);border-radius:999px;padding:11px 17px;background:#ffffff14;color:white;font:inherit;cursor:pointer}button.primary{background:linear-gradient(110deg,#06b6d4,#8b5cf6);font-weight:700;border:0}button:hover{filter:brightness(1.13)}button:focus-visible,select:focus-visible{outline:3px solid #67e8f9;outline-offset:3px}
+.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;color:#dbeafe;font-size:.95rem;margin:18px 0}.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px auto;max-width:420px}
+.tile{aspect-ratio:1;border-radius:14px;border:1px solid #ffffff24;background:linear-gradient(145deg,#29364b,#182236);font-size:clamp(1.4rem,5vw,2rem);display:grid;place-items:center;transition:transform .15s,background .15s;min-width:0}.tile:not(:disabled):hover{transform:translateY(-2px)}.tile.revealed,.tile.matched{background:linear-gradient(145deg,#164e63,#312e81);border-color:#22d3ee99}.tile.matched{opacity:.72}.tile:disabled{cursor:default}.message{min-height:28px;color:#67e8f9;font-weight:600}.small{font-size:.85rem;color:#8d9ab0;margin-top:24px}
+@media(max-width:380px){.board{gap:7px}.tile{border-radius:10px}.stats{gap:10px}}
+</style>
+</head>
+<body>
+<main class="panel">
+<h1>Memory Game</h1><p>Train your brain. Match every pair with as few moves as you can.</p>
+<div class="controls"><button class="primary" id="start">▶ Start Game</button><label for="level" class="sr-only">Difficulty</label><select id="level" aria-label="Difficulty"><option value="easy">Easy · 8 pairs</option><option value="medium" selected>Medium · 8 pairs</option><option value="hard">Hard · 12 pairs</option></select><button id="sound" aria-pressed="false">🔔 Sound: Off</button></div>
+<div class="stats"><span>Moves: <strong id="moves">0</strong></span><span>Pairs: <strong id="pairs">0/8</strong></span><span>Time: <strong id="time">00:00</strong></span></div>
+<div id="board" class="board" aria-label="Memory cards"></div><p id="message" class="message" role="status" aria-live="polite">Press Start Game to begin.</p>
+<p class="small">Built with HTML, CSS and JavaScript · Designed by Girish Panda</p>
+</main>
+<script>
+const icons=["🚀","🎧","🎮","💎","🪐","⚡","🎯","🧩","🌈","🔥","🦊","🌟"];
+const board=document.querySelector("#board"),level=document.querySelector("#level"),movesEl=document.querySelector("#moves"),pairsEl=document.querySelector("#pairs"),timeEl=document.querySelector("#time"),message=document.querySelector("#message"),soundBtn=document.querySelector("#sound");
+let deck=[],first=null,lock=false,moves=0,matched=0,seconds=0,timer=null,sound=false,started=false;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function timeText(n){return String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0")}
+function beep(freq=540){if(!sound)return;try{const ctx=new(window.AudioContext||window.webkitAudioContext)(),o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=freq;g.gain.value=.04;o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+.08);o.onended=()=>ctx.close()}catch{}}
+function start(){clearInterval(timer);const count=level.value==="hard"?12:8;deck=shuffle([...icons.slice(0,count),...icons.slice(0,count)]);first=null;lock=false;moves=0;matched=0;seconds=0;started=true;movesEl.textContent="0";pairsEl.textContent="0/"+count;timeEl.textContent="00:00";message.textContent="Find the matching pairs.";board.style.gridTemplateColumns=count===12?"repeat(6,minmax(0,1fr))":"repeat(4,minmax(0,1fr))";board.innerHTML="";
+deck.forEach((emoji,i)=>{const b=document.createElement("button");b.className="tile";b.type="button";b.textContent="?";b.dataset.emoji=emoji;b.setAttribute("aria-label","Hidden card "+(i+1));b.addEventListener("click",()=>flip(b));board.appendChild(b)});timer=setInterval(()=>{seconds++;timeEl.textContent=timeText(seconds)},1000)}
+function flip(card){if(!started||lock||card.classList.contains("revealed")||card.classList.contains("matched"))return;card.classList.add("revealed");card.textContent=card.dataset.emoji;card.setAttribute("aria-label",card.dataset.emoji);beep();if(!first){first=card;return}moves++;movesEl.textContent=moves;if(first.dataset.emoji===card.dataset.emoji){first.classList.add("matched");card.classList.add("matched");first.disabled=card.disabled=true;first=null;matched++;pairsEl.textContent=matched+"/"+(deck.length/2);beep(760);if(matched===deck.length/2){clearInterval(timer);message.textContent="🎉 You won in "+moves+" moves and "+timeText(seconds)+"!";started=false}}else{lock=true;const previous=first;setTimeout(()=>{[previous,card].forEach(c=>{c.classList.remove("revealed");c.textContent="?";c.setAttribute("aria-label","Hidden card")});first=null;lock=false},750)}}
+document.querySelector("#start").addEventListener("click",start);level.addEventListener("change",()=>{if(started)start()});soundBtn.addEventListener("click",()=>{sound=!sound;soundBtn.textContent="🔔 Sound: "+(sound?"On":"Off");soundBtn.setAttribute("aria-pressed",String(sound));beep()});start();
+</script>
+</body></html>
