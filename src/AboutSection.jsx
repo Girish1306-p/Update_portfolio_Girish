@@ -29,7 +29,7 @@ export default function AboutSection() {
           <div className="grid md:grid-cols-2 gap-12 relative z-10">
 
               {/* LEFT SIDE — ABOUT TEXT */}
-              <div className="space-y-4 border-l-4 border-cyan-400 pl-5">
+              <div className="max-h-[320px] space-y-4 overflow-y-auto border-l-4 border-cyan-400 pl-5 pr-3 [scrollbar-width:thin] [scrollbar-color:#22d3ee33_transparent]">
                   <p className="text-gray-300 text-[15px] leading-relaxed">
                       I am an MCA graduate from the College of IT and Management Education, Bhubaneswar, and completed my BCA at the Institute of Technical Education and Research, SOA University.
                   </p>
