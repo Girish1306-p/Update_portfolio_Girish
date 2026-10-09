@@ -40,7 +40,7 @@ export default function Contact() {
 
     // Phone: digits only, 10–12 digits
     if (!form.phone || !/^\d{10,12}$/.test(form.phone.trim())) {
-      e.phone = "Phone must be 10 to 12 digits.";
+      e.phone = "Enter a phone number with 10 to 12 digits.";
     }
 
     // Subject: non-empty
@@ -89,7 +89,7 @@ export default function Contact() {
       setTimeout(() => setStatus({ loading: false, success: "", error: "" }), 4000);
     } catch (err) {
       console.error("EmailJS error:", err);
-      setStatus({ loading: false, success: "", error: "Something went wrong. Please try again later." });
+      setStatus({ loading: false, success: "", error: "Message could not be sent. Please try again or email girish.panda2001@gmail.com directly." });
     }
   };
 
@@ -112,8 +112,9 @@ export default function Contact() {
             <motion.a
               key={i}
               href={s.link}
-              target="_blank"
-              rel="noreferrer"
+              target={s.link.startsWith("http") ? "_blank" : undefined}
+              rel={s.link.startsWith("http") ? "noreferrer" : undefined}
+              aria-label={`${s.label}: ${s.value}`}
               className="bg-white/8 backdrop-blur-xl border border-white/20 rounded-xl p-3 flex flex-col items-center justify-center text-center hover:shadow-[0_0_18px_rgba(0,255,255,0.12)] transition"
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3, repeat: Infinity, repeatType: "mirror", delay: i * 0.35, ease: "easeInOut" }}
@@ -138,8 +139,8 @@ export default function Contact() {
         >
           {/* inline status */}
           {/* inline status */}
-          {status.error && <div className="text-red-400 text-sm mb-2">{status.error}</div>}
-          {status.success && <div className="text-green-400 text-sm mb-2">{status.success}</div>}
+          {status.error && <div role="alert" aria-live="polite" className="text-red-400 text-sm mb-2">{status.error}</div>}
+          {status.success && <div role="status" aria-live="polite" className="text-green-400 text-sm mb-2">{status.success}</div>}
 
           {/*  Input Grid  */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -151,6 +152,9 @@ export default function Contact() {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Your Name"
+                aria-label="Your name"
+                autoComplete="name"
+                required
                 className="inputBox w-full py-2.5 text-sm"
               />
               {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
@@ -163,6 +167,9 @@ export default function Contact() {
                 value={form.email}
                 onChange={handleChange}
                 placeholder="Your Email"
+                aria-label="Your email"
+                autoComplete="email"
+                required
                 className="inputBox w-full py-2.5 text-sm"
               />
               {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
@@ -179,6 +186,9 @@ export default function Contact() {
                 value={form.phone}
                 onChange={handleChange}
                 placeholder="Phone Number"
+                aria-label="Phone number"
+                autoComplete="tel"
+                required
                 className="inputBox w-full py-2.5 text-sm"
               />
               {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
@@ -191,6 +201,8 @@ export default function Contact() {
                 value={form.subject}
                 onChange={handleChange}
                 placeholder="Subject"
+                aria-label="Subject"
+                required
                 className="inputBox w-full py-2.5 text-sm"
               />
               {errors.subject && <p className="text-red-400 text-xs mt-1">{errors.subject}</p>}
@@ -204,6 +216,8 @@ export default function Contact() {
               value={form.message}
               onChange={handleChange}
               placeholder="Message"
+              aria-label="Message"
+              required
               rows="5"
               className="inputBox w-full py-2.5 text-sm min-h-[120px]"
             />
