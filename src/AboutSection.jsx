@@ -108,7 +108,6 @@ export default function AboutSection() {
                       <ul className="space-y-1 text-[14px] text-gray-200">
                           <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> MongoDB</li>
                           <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> MySQL / SQL</li>
-                          <li className="flex items-center gap-2"><FontAwesomeIcon icon={faDatabase} className="text-green-400" /> SQLite</li>
                       </ul>
                   </div>
 
