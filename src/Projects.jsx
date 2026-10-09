@@ -18,8 +18,8 @@ const projects = [
       "A modern personal portfolio built with React, TailwindCSS, and Framer Motion. Fully responsive with smooth UI animations.",
     tech: ["React", "TailwindCSS", "JavaScript"],
     img: "/update_portfolio.png",
-    live: "#",
-    code: "#",
+    live: "https://girish-panda.netlify.app/",
+    code: "https://github.com/Girish1306-p/Update_portfolio_Girish",
   },
   {
     title: "Cafe Management System",
@@ -27,8 +27,8 @@ const projects = [
       "A complete cafe management system built using HTML, CSS, JavaScript, Python, Django, and MySQL.",
     tech: ["SQLite", "Django", "Python", "HTML", "CSS", "JavaScript"],
     img: "/cafe.png",
-    live: "#",
-    code: "#",
+    live: "",
+    code: "",
   },
   {
     title: "Food & Grocery Website",
@@ -53,7 +53,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-6 px-6 text-white relative">
+    <section id="projects" className="relative px-4 py-10 text-white sm:px-6 md:py-14">
       {/* Neon Glow Background Blobs */}
      
 
@@ -64,7 +64,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold mb-12 text-center"
+          className="mb-8 text-center text-3xl font-bold md:text-4xl"
         >
           My <span className="text-cyan-400">Projects</span>
         </motion.h2>
@@ -78,7 +78,7 @@ export default function Projects() {
             prevEl: ".swiper-button-prev-custom",
             nextEl: ".swiper-button-next-custom",
           }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 4000, disableOnInteraction: true, pauseOnMouseEnter: true }}
           breakpoints={{
             0: { slidesPerView: 1 },
             640: { slidesPerView: 1 },
@@ -101,7 +101,7 @@ export default function Projects() {
                              border border-white/20 
                              shadow-xl hover:shadow-cyan-500/40
                              transition-all duration-300
-                             w-[90%] sm:w-82 h-[max-content] md:h-[max-content] p-1"
+                             w-full max-w-sm h-full p-1"
                   style={{ transformStyle: "preserve-3d", transition: "transform 0.4s ease" }}
                   onMouseMove={(e) => {
                     const card = e.currentTarget;
@@ -129,7 +129,7 @@ export default function Projects() {
                   </div>
 
                   {/* Content */}
-                  <div className="p-5 flex flex-col h-[250px] justify-between">
+                  <div className="flex min-h-[250px] flex-col justify-between p-4 sm:p-5">
                     <div>
                       <h3 className="text-lg font-semibold text-cyan-300">
                         {project.title}
@@ -155,8 +155,8 @@ export default function Projects() {
                     {/* Buttons */}
                     <div className="flex items-center gap-4 mt-3">
                       <a
-                        href={project.live}
-                        className="flex items-center gap-1 text-sm text-cyan-400 hover:text-cyan-300"
+                        href={project.live || undefined}
+                        className={`flex items-center gap-1 text-sm ${project.live ? "text-cyan-400 hover:text-cyan-300" : "cursor-not-allowed text-gray-500"}`} aria-disabled={!project.live}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -164,8 +164,8 @@ export default function Projects() {
                       </a>
 
                       <a
-                        href={project.code}
-                        className="flex items-center gap-1 text-sm text-gray-300 hover:text-gray-200"
+                        href={project.code || undefined}
+                        className={`flex items-center gap-1 text-sm ${project.code ? "text-gray-300 hover:text-gray-100" : "cursor-not-allowed text-gray-500"}`} aria-disabled={!project.code}
                         target="_blank"
                         rel="noreferrer"
                       >
