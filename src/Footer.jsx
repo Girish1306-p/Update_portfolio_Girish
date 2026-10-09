@@ -6,7 +6,6 @@ import {
 import {
   faGithub,
   faLinkedin,
-  faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -26,7 +25,7 @@ export default function Footer() {
         Girish <span className="text-cyan-400">Panda</span>
       </h2>
       <p className="text-gray-400 text-sm leading-snug">
-        Frontend Developer • React.js • UI/UX  
+        Frontend Developer • React.js • Java Full Stack learner  
         Creating modern, aesthetic, and high-performance web experiences.
       </p>
     </div>
@@ -61,10 +60,13 @@ export default function Footer() {
 
       {/* Social Icons */}
       <div className="flex gap-3 mt-1">
-  {[faGithub, faLinkedin, faTwitter, faInstagram].map((icon, index) => (
+  {[{ icon: faGithub, href: "https://github.com/Girish1306-p", label: "GitHub" }, { icon: faLinkedin, href: "https://www.linkedin.com/in/girish-panda", label: "LinkedIn" }, { icon: faInstagram, href: "https://www.instagram.com/__natures_creations__", label: "Instagram" }].map(({ icon, href, label }) => (
     <a
-      key={index}
-      href="#"
+      key={label}
+      href={href}
+      aria-label={label}
+      target="_blank"
+      rel="noreferrer"
       className="w-8 h-8 flex items-center justify-center rounded-full 
                  bg-white/5 border border-white/10 backdrop-blur-sm
                  text-gray-300 hover:text-cyan-400 
@@ -90,7 +92,7 @@ export default function Footer() {
     | Crafted with passion & precision.
   </p>
 
-  <p className="text-[10px] md:text-[11px] text-gray-500 mt-1 italic">
+  <p className="text-[11px] md:text-xs text-gray-500 mt-1 italic">
     Designed & Developed by <span className="text-cyan-300">Girish</span> — Frontend Developer & UI/UX Designer
   </p>
 </div>
