@@ -17,9 +17,9 @@ const projects = [
     description:
       "A browser-based memory game built with HTML, CSS, and JavaScript. Includes game play, level selection, and settings.",
     tech: ["HTML", "CSS", "JavaScript"],
-    img: "/memory-game/asset/game.svg",
-    live: "/memory-game/index.html",
-    code: "https://github.com/Girish1306-p/Update_portfolio_Girish/tree/main/public/memory-game",
+    img: "https://raw.githubusercontent.com/Girish1306-p/memory-card-game/main/game.png",
+    live: "https://girish1306-p.github.io/memory-card-game/",
+    code: "https://github.com/Girish1306-p/memory-card-game",
   },
   {
     title: "Portfolio Website",
