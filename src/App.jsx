@@ -60,7 +60,7 @@ export default function App() {
     <>
       <Navbar />
 
-      <main className="portfolio-shell pt-16 min-h-screen">
+      <main className="pt-16 h-[max-content] bg-black min-h-screen">
 
         {/* HERO SECTION */}
         <section
