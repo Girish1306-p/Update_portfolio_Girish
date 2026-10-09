@@ -1,93 +1,75 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const experience = {
-  role: "Frontend Developer Intern",
-  company: "CodeDais Software and Research Pvt. Ltd.",
-  duration: "11 Aug 2025 - 15 Nov 2025",
-  points: [
-    "Developed fully responsive web interfaces using HTML, CSS, JavaScript, TailwindCSS, and Bootstrap.",
-    "Built reusable UI components and optimized frontend workflow.",
-    "Collaborated with senior developers to improve UI/UX consistency.",
-    "Enhanced website speed and implemented mobile-first designs.",
-    "Worked on real-world client projects and improved overall user experience."
-  ],
-  tech: ["HTML", "CSS", "JavaScript", "TailwindCSS", "Bootstrap"],
-};
+const experience = [
+  {
+    role: "Computer Science Teacher",
+    company: "Bidyarthi Science HS School",
+    duration: "05 January 2026 – 18 July 2026",
+    points: [
+      "Taught DBMS, Web Technology, and Software Engineering to +2 and +3 students.",
+      "Explained computer science concepts and supported students with subject-related questions."
+    ],
+    tech: ["DBMS", "Web Technology", "Software Engineering"],
+    tone: "cyan"
+  },
+  {
+    role: "Frontend Developer Intern",
+    company: "CodeDais Software and Research Pvt. Ltd., Bhubaneswar",
+    duration: "11 August 2025 – 15 November 2025",
+    points: [
+      "Developed responsive UI components using HTML, CSS, JavaScript, and Tailwind CSS.",
+      "Improved UI performance and responsiveness for a better user experience.",
+      "Collaborated with team members to enhance frontend functionality and assisted with reporting interfaces for test results."
+    ],
+    tech: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
+    tone: "blue"
+  }
+];
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-10 px-4 md:px-6 text-white bg-black relative">
-      <div className="max-w-4xl mx-auto">
-
-        {/* Section Heading */}
+    <section id="experience" className="relative bg-black px-5 py-12 text-white sm:px-6 md:py-16">
+      <div className="mx-auto max-w-4xl">
         <motion.h2
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-14"
+          className="mb-9 text-center text-3xl font-bold md:text-4xl"
         >
           My <span className="text-cyan-400">Experience</span>
         </motion.h2>
-
-        {/* Timeline Wrapper */}
-        <div className="relative border-l border-cyan-500/30 pl-8">
-
-          {/* Timeline Glow Line */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500/20 blur-[2px]"></div>
-
-          {/* EXPERIENCE CARD */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="relative mb-10"
-          >
-            {/* Dot */}
-            <div className="absolute -left-5 w-4 h-4 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(0,255,255,0.7)]"></div>
-
-            {/* Card */}
-            <div className="bg-white/10 backdrop-blur-xl border border-cyan-300/20 p-6 rounded-2xl shadow-xl 
-                            hover:shadow-cyan-500/40 transition-all duration-300">
-
-              {/* Company Header */}
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center">
-                  <i className="fas fa-building text-cyan-300 text-lg"></i>
-                </div>
-
+        <div className="relative space-y-6 border-l border-cyan-500/30 pl-5 sm:pl-7">
+          {experience.map((item, index) => (
+            <motion.article
+              key={item.company}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              viewport={{ once: true }}
+              className="relative rounded-2xl border border-cyan-300/20 bg-white/[0.045] p-4 shadow-[0_0_24px_rgba(0,200,255,0.05)] transition hover:border-cyan-300/40 hover:shadow-[0_0_26px_rgba(0,200,255,0.10)] sm:p-6"
+            >
+              <span aria-hidden="true" className="absolute -left-[1.72rem] top-6 h-3 w-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(0,255,255,0.7)] sm:-left-[2.22rem]" />
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold text-cyan-300">{experience.role}</h3>
-                  <p className="text-gray-300 text-sm">{experience.company}</p>
-                  <p className="text-gray-400 text-xs">{experience.duration}</p>
+                  <h3 className="text-lg font-semibold text-cyan-300 sm:text-xl">{item.role}</h3>
+                  <p className="text-sm text-gray-300">{item.company}</p>
                 </div>
+                <p className="text-xs text-gray-400 sm:max-w-[42%] sm:text-right">{item.duration}</p>
               </div>
-
-              {/* Bullet Points */}
-              <ul className="space-y-2 mt-4">
-                {experience.points.map((pt, i) => (
-                  <li key={i} className="text-gray-300 text-sm flex gap-2">
-                    <span className="text-cyan-400">•</span> {pt}
+              <ul className="mt-4 space-y-2">
+                {item.points.map(point => (
+                  <li key={point} className="flex gap-2 text-sm leading-relaxed text-gray-300">
+                    <span aria-hidden="true" className="text-cyan-400">•</span><span>{point}</span>
                   </li>
                 ))}
               </ul>
-
-              {/* Tech Stack Badges */}
-              <div className="flex flex-wrap gap-2 mt-5">
-                {experience.tech.map((t, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 text-xs rounded-full bg-cyan-500/10 text-cyan-300 
-                               border border-cyan-400/30 shadow-sm"
-                  >
-                    {t}
-                  </span>
-                ))}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {item.tech.map(tech => <span key={tech} className="rounded-full border border-cyan-400/25 bg-cyan-400/[0.07] px-3 py-1 text-xs text-cyan-200">{tech}</span>)}
               </div>
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </section>
