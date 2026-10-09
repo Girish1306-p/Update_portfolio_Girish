@@ -17,9 +17,9 @@ export default function App() {
   // FINAL FIXED TYPING EFFECT
   useEffect(() => {
     const roles = [
-      "Web Developer",
-      "Frontend Designer",
-      "UI/UX Designer",
+      "Frontend Developer",
+      "React.js Developer",
+      "Java Full Stack Developer",
     ];
 
     let index = 0;
@@ -60,7 +60,7 @@ export default function App() {
     <>
       <Navbar />
 
-      <main className="pt-16 h-[max-content] bg-black min-h-screen">
+      <main className="portfolio-shell pt-16 min-h-screen">
 
         {/* HERO SECTION */}
         <section
@@ -95,8 +95,7 @@ export default function App() {
             <h2 className="typing-rotate text-lg sm:text-xl md:text-2xl font-semibold text-cyan-300 h-6"></h2>
 
             <p className="text-gray-300 text-sm sm:text-base md:text-base max-w-sm leading-relaxed w-full">
-              Motivated MCA graduate | Frontend Developer | React.js & MERN stack enthusiast.
-              Passionate about building modern, responsive, and interactive web applications.
+              MCA graduate and frontend developer with hands-on experience building responsive web interfaces. Currently strengthening my Java Full Stack skills and creating practical, user-focused web applications.
             </p>
 
             {/* SOCIAL ICONS */}
